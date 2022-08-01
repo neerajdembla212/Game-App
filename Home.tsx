@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Typography } from "./components/Typography";
+import { Button } from "./components/Button";
 
 const backgroundImage = require("./assets/bg_startPage.png");
 
@@ -20,18 +21,23 @@ export const HomeScreen = ({ navigation }) => {
       >
         <View style={styles.contentContainer}>
           <View style={styles.textContainer}>
-            <Typography text="The game is on." 
-            type="heading" 
-            bold={true} 
-            overrideStyle={{width: '70%'}}></Typography>
+            <Typography
+              text="The game is on."
+              type="heading"
+              bold={true}
+              overrideStyle={{ width: "70%" }}
+            ></Typography>
             <Typography
               text="Test your wits with our daily live quiz shows and win cash! Free quizzes of a variety of themes updated daily for all you brainiacs out there."
               type="normal"
             ></Typography>
-            <TouchableOpacity style={styles.button} onPress={() => {}}>
-              <Text style={styles.buttonText}>Sign up</Text>
-            </TouchableOpacity>
-            {/* <Button title='Sign up' color='#FFFFFF' accessibilityLabel='Sign up'/> */}
+            <Button
+              text="Sign up"
+              onPress={() => {}}
+              type="primary"
+              overrideStyles={styles.button}
+              fullWidth={true}
+            />
           </View>
           <View style={styles.disclaimer}>
             <Typography
@@ -84,19 +90,8 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   button: {
-    backgroundColor: "#F9DC30",
-    color: "#000000",
-    width: "80%",
-    justifyContent: "center",
     height: 50,
-    borderRadius: 30,
     alignSelf: "center",
     marginTop: 30,
-    textAlign: "center",
-  },
-  buttonText: {
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 16,
   },
 });
