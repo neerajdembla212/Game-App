@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Text, StyleSheet } from "react-native";
 
 interface TypographyProps {
-  type: "heading" | "subHeading" | "normal";
+  type: "heading" | "subHeading" | "normal" | "title";
   text: string;
   overrideStyle?: Object;
   bold?: boolean;
@@ -38,6 +38,11 @@ export const Typography: FC<TypographyProps> = ({
           ...styles.normal,
           ...additionalStyles,
         };
+      case "title":
+        return {
+          ...styles.title,
+          ...additionalStyles,
+        };
       default:
         return {
           ...styles.normal,
@@ -62,4 +67,9 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   subHeading: {},
+  title: {
+    fontWeight: "bold",
+    fontSize: 36,
+    lineHeight: 46,
+  },
 });

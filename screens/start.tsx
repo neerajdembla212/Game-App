@@ -1,17 +1,14 @@
 import React from "react";
-import {
-  Text,
-  View,
-  ImageBackground,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-import { Typography } from "./components/Typography";
-import { Button } from "./components/Button";
+import { View, ImageBackground, StyleSheet } from "react-native";
+import { Typography } from "../components/typography";
+import { Button } from "../components/button";
 
-const backgroundImage = require("./assets/bg_startPage.png");
+const backgroundImage = require("../assets/bg_startPage.png");
 
-export const HomeScreen = ({ navigation }) => {
+interface StartScreenProps {
+  navigation: any;
+}
+export const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -33,7 +30,7 @@ export const HomeScreen = ({ navigation }) => {
             ></Typography>
             <Button
               text="Sign up"
-              onPress={() => {}}
+              onPress={() => {navigation.navigate('Sign up')}}
               type="primary"
               overrideStyles={styles.button}
               fullWidth={true}
