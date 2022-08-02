@@ -5,6 +5,7 @@ import {
   StyleSheet,
   GestureResponderEvent,
 } from "react-native";
+import { makeStyles } from "@rneui/themed";
 
 interface ButtonProps {
   onPress: (e: GestureResponderEvent) => void;
@@ -14,54 +15,40 @@ interface ButtonProps {
   fullWidth?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  onPress,
-  text,
-  type,
-  overrideStyles = {},
-  fullWidth = false,
-}) => {
-  function getButtonStyle() {
-    let additionalStyles = {
-      ...styles.button,
-      ...overrideStyles,
-    };
-    if (fullWidth) {
-      additionalStyles = {
-        ...additionalStyles,
-        ...styles.fullWidth,
-      };
-    }
-    switch (type) {
-      case "primary":
-        return { ...styles.primaryButton, ...additionalStyles };
-    }
-  }
+export const Button: React.FC<ButtonProps> = (props) => {
+  const {
+    onPress,
+    text,
+    type = "clear",
+    overrideStyles = {},
+    fullWidth = false,
+  } = props;
+  const styles = useStyles(props);
   return (
-    <TouchableOpacity style={getButtonStyle()} onPress={onPress}>
-      <Text style={styles.buttonText}>{text}</Text>
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity
+        style={{ ...styles.button, ...overrideStyles }}
+        onPress={onPress}
+      >
+        <Text style={styles.buttonText}>{text}</Text>
+      </TouchableOpacity>
+    </>
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((theme: any, props: ButtonProps) => ({
   button: {
     justifyContent: "center",
     textAlign: "center",
-    width: 100,
-  },
-  fullWidth: {
-    width: "100%",
+    width: props.fullWidth ? "100%" : 100,
+    backgroundColor:
+      props.type === "primary" ? theme.colors.secondary : theme.colors.grey0,
+    color: theme.colors.black,
+    borderRadius: 30,
   },
   buttonText: {
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 16,
   },
-  primaryButton: {
-    backgroundColor: "#F9DC30",
-    color: "#000000",
-    textAlign: "center",
-    borderRadius: 30,
-  },
-});
+}));

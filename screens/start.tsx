@@ -30,7 +30,9 @@ export const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
             ></Typography>
             <Button
               text="Sign up"
-              onPress={() => {navigation.navigate('Sign up')}}
+              onPress={() => {
+                navigation.navigate("Sign up");
+              }}
               type="primary"
               overrideStyles={styles.button}
               fullWidth={true}

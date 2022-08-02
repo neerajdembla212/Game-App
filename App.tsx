@@ -6,9 +6,28 @@ import { useFonts } from "expo-font";
 
 import { StartScreen } from "./screens/start";
 import { SignupScreen } from "./screens/sign-up";
+import { LoginScreen } from "./screens/login";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import {
+  ThemeProvider,
+  Button,
+  createTheme,
+  CreateThemeOptions,
+} from "@rneui/themed";
 
 const Stack = createNativeStackNavigator();
-
+const theme = createTheme({
+  darkColors: {
+    primary: "#5C1DC0",
+    secondary: "#F9DC30",
+    grey0: "rgba(255, 255, 255, 0.8)",
+  },
+  lightColors: {
+    primary: "#5C1DC0",
+    secondary: "#F9DC30",
+    grey0: "rgba(255, 255, 255, 0.8)",
+  },
+});
 export default function App() {
   const [fontsLoaded] = useFonts({
     circularStd: require("./assets/fonts/circularStd.ttf"),
@@ -18,12 +37,17 @@ export default function App() {
     return null;
   }
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Start" component={StartScreen} />
-        <Stack.Screen name="Sign up" component={SignupScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Start" component={StartScreen} />
+            <Stack.Screen name="Sign up" component={SignupScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
 

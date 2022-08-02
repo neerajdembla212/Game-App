@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import {
-  View,
-  ImageBackground,
-  StyleSheet,
-  NativeSyntheticEvent,
-  TextInputChangeEventData,
-} from "react-native";
+import { View } from "react-native";
 import { Typography } from "../components/typography";
 import { TextInput } from "../components/text-input";
+import { CheckboxInput } from "../components/checkbox-input";
+import { Button } from "../components/button";
+import { makeStyles } from "@rneui/themed";
 
 interface SignupProps {
   navigation: any;
@@ -16,7 +13,9 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [termsAndCondition, setTermsAndCondition] = useState(false);
 
+  const styles = useStyles({ navigation });
   function onChangeEmail(text: string) {
     setEmail(text);
   }
@@ -28,6 +27,10 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
     setPassword(text);
   }
 
+  function onChangeTermsAndCondition() {
+    console.log("setting value to ", !termsAndCondition);
+    setTermsAndCondition(!termsAndCondition);
+  }
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
@@ -76,15 +79,31 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
             hideText={true}
           />
         </View>
+        <View style={styles.formField}>
+          <CheckboxInput
+            value={termsAndCondition}
+            onChange={onChangeTermsAndCondition}
+            text="I agree to the terms and conditions"
+          />
+        </View>
+        <Button
+          text="Create account"
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+          type="primary"
+          overrideStyles={styles.button}
+          fullWidth={true}
+        />
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((theme: any, props: SignupProps) => ({
   container: {
     flex: 1,
-    backgroundColor: "#5C1DC0",
+    backgroundColor: theme.colors.primary,
   },
   formContainer: {
     marginTop: "20%",
@@ -94,4 +113,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-});
+  button: {
+    height: 50,
+    alignSelf: "center",
+    marginTop: 30,
+  },
+}));
