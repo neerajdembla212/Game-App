@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   Platform,
   Keyboard,
+  Image,
 } from "react-native";
 import { makeStyles } from "@rneui/themed";
 
@@ -12,6 +13,7 @@ import { Typography } from "../components/typography";
 import { TextInput } from "../components/text-input";
 import { CheckboxInput } from "../components/checkbox-input";
 import { Button } from "../components/button";
+import { SsoAuth } from "../components/sso-auth";
 
 interface SignupProps {
   navigation: any;
@@ -41,9 +43,12 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.inner}>
-          <View>
+      <TouchableWithoutFeedback
+        onPress={Keyboard.dismiss}
+        style={{ justifyContent: "center" }}
+      >
+        <View style={{ flex: 1 }}>
+          <View style={styles.inner}>
             <Typography
               text="Create account"
               bold={true}
@@ -107,8 +112,12 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
               type="primary"
               overrideStyles={styles.button}
               fullWidth={true}
+              borderRadius={true}
             />
           </View>
+          <SsoAuth
+            style={{ marginBottom: 30, padding: 20, justifyContent: "center" }}
+          />
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
@@ -117,8 +126,10 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
 
 const useStyles = makeStyles((theme: any, props: SignupProps) => ({
   container: {
-    flex: 1,
+    height: "100%",
     backgroundColor: theme.colors.primary,
+    justifyContent: "space-between",
+    paddingTop: "10%",
   },
   inner: {
     padding: 20,

@@ -36,6 +36,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
               type="primary"
               overrideStyles={styles.button}
               fullWidth={true}
+              borderRadius={true}
             />
           </View>
           <View style={styles.disclaimer}>
@@ -44,7 +45,12 @@ export const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
               type="normal"
               color="#C4C4C4"
             ></Typography>
-            <Typography text="Log in." type="normal" bold={false}></Typography>
+            <Typography
+              text="Log in."
+              type="normal"
+              bold={true}
+              onPress={() => navigation.navigate('Login')}
+            ></Typography>
           </View>
         </View>
       </ImageBackground>

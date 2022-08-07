@@ -1,54 +1,86 @@
 import React from "react";
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  GestureResponderEvent,
-} from "react-native";
-import { makeStyles } from "@rneui/themed";
+import { GestureResponderEvent } from "react-native";
+import { makeStyles, Button as RneButton, Icon } from "@rneui/themed";
 
 interface ButtonProps {
   onPress: (e: GestureResponderEvent) => void;
   text: string;
-  type: "primary" | "outline" | "link" | "default";
+  type: "primary" | "secondary" | "outline" | "link" | "default";
   overrideStyles?: any;
   fullWidth?: boolean;
+  icon?: any;
+  borderRadius?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
   const {
     onPress,
     text,
-    type = "clear",
     overrideStyles = {},
     fullWidth = false,
+    borderRadius = true,
+    icon,
   } = props;
   const styles = useStyles(props);
   return (
-    <>
-      <TouchableOpacity
-        style={{ ...styles.button, ...overrideStyles }}
-        onPress={onPress}
-      >
-        <Text style={styles.buttonText}>{text}</Text>
-      </TouchableOpacity>
-    </>
+    <RneButton
+      onPress={onPress}
+      buttonStyle={{ ...styles.button, ...overrideStyles }}
+      titleStyle={styles.buttonText}
+    >
+      {icon}
+      {text}
+    </RneButton>
   );
 };
 
-const useStyles = makeStyles((theme: any, props: ButtonProps) => ({
-  button: {
-    justifyContent: "center",
-    textAlign: "center",
-    width: props.fullWidth ? "100%" : 100,
-    backgroundColor:
-      props.type === "primary" ? theme.colors.secondary : theme.colors.grey0,
-    color: theme.colors.black,
-    borderRadius: 30,
-  },
-  buttonText: {
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-}));
+const useStyles = makeStyles((theme: any, props: ButtonProps) => {
+  let buttonStyles = {};
+  let buttonTextStyles = {};
+  switch (props.type) {
+    case "primary":
+      buttonStyles = {
+        backgroundColor: theme.colors.secondary,
+      };
+      break;
+    case "secondary":
+      buttonStyles = {
+        backgroundColor: theme.colors.grey0,
+      };
+      buttonTextStyles = {
+        color: theme.colors.black,
+        fontWeight: "500",
+      };
+      break;
+    case "outline":
+      buttonStyles = {
+        backgroundColor: "transparent",
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: theme.colors.secondary,
+      };
+      buttonTextStyles = {
+        color: theme.colors.secondary,
+      };
+      break;
+  }
+  return {
+    button: {
+      justifyContent: "center",
+      textAlign: "center",
+      width: props.fullWidth ? "100%" : 100,
+      backgroundColor: theme.colors.grey0,
+      borderRadius: props.borderRadius ? 30 : 0,
+      alignItems: "center",
+      padding: 10,
+      ...buttonStyles,
+    },
+    buttonText: {
+      textAlign: "center",
+      fontWeight: "bold",
+      fontSize: 16,
+      color: theme.colors.black,
+      ...buttonTextStyles,
+    },
+  };
+});

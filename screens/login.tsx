@@ -12,6 +12,7 @@ import { TextInput } from "../components/text-input";
 import { Typography } from "../components/typography";
 import { Button } from "../components/button";
 import { CheckboxInput } from "../components/checkbox-input";
+import { SsoAuth } from "../components/sso-auth";
 
 interface LoginProps {
   navigation: any;
@@ -87,8 +88,12 @@ export const LoginScreen: React.FC<LoginProps> = ({ navigation }) => {
               type="primary"
               overrideStyles={styles.button}
               fullWidth={true}
+              borderRadius={true}
             />
           </View>
+          <SsoAuth
+            style={{ marginBottom: 30, padding: 20, justifyContent: "center" }}
+          />
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

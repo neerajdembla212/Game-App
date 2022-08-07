@@ -2,11 +2,12 @@ import React, { FC } from "react";
 import { Text, StyleSheet } from "react-native";
 
 interface TypographyProps {
-  type: "heading" | "subHeading" | "normal" | "title";
+  type: "heading" | "subHeading" | "normal" | "title" | "small";
   text: string;
   overrideStyle?: Object;
   bold?: boolean;
   color?: string;
+  onPress?: () => void;
 }
 
 export const Typography: FC<TypographyProps> = ({
@@ -15,6 +16,7 @@ export const Typography: FC<TypographyProps> = ({
   overrideStyle = {},
   bold = false,
   color = "#FFFFFF",
+  onPress = () => {},
 }) => {
   function getStyle() {
     const additionalStyles = {
@@ -43,6 +45,12 @@ export const Typography: FC<TypographyProps> = ({
           ...styles.title,
           ...additionalStyles,
         };
+      case "small": {
+        return {
+          ...styles.small,
+          ...additionalStyles,
+        };
+      }
       default:
         return {
           ...styles.normal,
@@ -50,7 +58,11 @@ export const Typography: FC<TypographyProps> = ({
         };
     }
   }
-  return <Text style={getStyle()}>{text}</Text>;
+  return (
+    <Text style={getStyle()} onPress={onPress}>
+      {text}
+    </Text>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -71,5 +83,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 36,
     lineHeight: 46,
+  },
+  small: {
+    fontSize: 13,
+    lineHeight: 17,
   },
 });
