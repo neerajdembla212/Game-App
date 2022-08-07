@@ -39,15 +39,15 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
     setTermsAndCondition(!termsAndCondition);
   }
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    <TouchableWithoutFeedback
+      onPress={Keyboard.dismiss}
       style={styles.container}
     >
-      <TouchableWithoutFeedback
-        onPress={Keyboard.dismiss}
-        style={{ justifyContent: "center" }}
-      >
-        <View style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.container}
+        >
           <View style={styles.inner}>
             <Typography
               text="Create account"
@@ -115,21 +115,21 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
               borderRadius={true}
             />
           </View>
-          <SsoAuth
-            style={{ marginBottom: 30, padding: 20, justifyContent: "center" }}
-          />
-        </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+        <SsoAuth
+          style={{ marginBottom: 30, padding: 20, justifyContent: "center" }}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const useStyles = makeStyles((theme: any, props: SignupProps) => ({
   container: {
-    height: "100%",
+    flex: 1,
     backgroundColor: theme.colors.primary,
-    justifyContent: "space-between",
-    paddingTop: "10%",
+    // justifyContent: "center",
+    // paddingTop: "10%",
   },
   inner: {
     padding: 20,
