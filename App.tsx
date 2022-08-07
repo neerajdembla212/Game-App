@@ -7,6 +7,7 @@ import { useFonts } from "expo-font";
 import { StartScreen } from "./screens/start";
 import { SignupScreen } from "./screens/sign-up";
 import { LoginScreen } from "./screens/login";
+import { HomeScreen } from "./screens/home";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   ThemeProvider,
@@ -40,10 +41,14 @@ export default function App() {
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator
+          screenOptions={{
+            headerShown: false
+          }}>
             <Stack.Screen name="Start" component={StartScreen} />
             <Stack.Screen name="Sign up" component={SignupScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Home" component={HomeScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </ThemeProvider>
