@@ -2,7 +2,7 @@ import React from "react";
 import { GestureResponderEvent } from "react-native";
 import { makeStyles, Button as RneButton, Icon } from "@rneui/themed";
 
-interface ButtonProps {
+export interface ButtonProps {
   onPress: (e: GestureResponderEvent) => void;
   text: string;
   type: "primary" | "secondary" | "outline" | "link" | "default";
