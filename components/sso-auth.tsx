@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image } from "react-native";
 import { makeStyles } from "@rneui/themed";
 import { Typography } from "../components/typography";
-import { Button } from "./button";
+import { Button } from "../components/button";
 
 interface SsoAuthProps {
   style: any;

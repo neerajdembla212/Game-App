@@ -49,7 +49,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
               text="Log in."
               type="normal"
               bold={true}
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => navigation.navigate('Login')}
             ></Typography>
           </View>
         </View>

@@ -8,8 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "build": "npm install -g expo-cli && expo start",
-    "test": "jest"
+    "build": "npm install -g expo-cli && expo start"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.11",
@@ -29,15 +28,9 @@
     "react-native-web": "0.17.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.10",
-    "@babel/preset-env": "^7.18.10",
-    "@babel/preset-react": "^7.18.6",
-    "@types/jest": "^28.1.6",
+    "@babel/core": "^7.12.9",
     "@types/react": "^18.0.15",
     "@types/react-native": "~0.66.13",
-    "babel-jest": "^28.1.3",
-    "jest": "^28.1.3",
-    "jest-environment-jsdom": "^28.1.3",
     "typescript": "~4.3.5"
   },
   "private": true
