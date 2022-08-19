@@ -1,7 +1,7 @@
 import React from "react";
 import { View, ImageBackground, StyleSheet } from "react-native";
-import { Typography } from "../components/typography";
-import { Button } from "../components/button";
+import { Typography } from "../elements/typography";
+import { Button } from "../elements/button";
 
 const backgroundImage = require("../assets/bg_startPage.png");
 
@@ -19,17 +19,18 @@ export const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
         <View style={styles.contentContainer}>
           <View style={styles.textContainer}>
             <Typography
-              text="The game is on."
               type="heading"
               bold={true}
               overrideStyle={{ width: "70%" }}
-            ></Typography>
-            <Typography
-              text="Test your wits with our daily live quiz shows and win cash! Free quizzes of a variety of themes updated daily for all you brainiacs out there."
-              type="normal"
-            ></Typography>
+            >
+              The game is on.
+            </Typography>
+            <Typography type="normal">
+              Test your wits with our daily live quiz shows and win cash! Free
+              quizzes of a variety of themes updated daily for all you brainiacs
+              out there.
+            </Typography>
             <Button
-              text="Sign up"
               onPress={() => {
                 navigation.navigate("Sign up");
               }}
@@ -37,20 +38,21 @@ export const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
               overrideStyles={styles.button}
               fullWidth={true}
               borderRadius={true}
-            />
+            >
+              Sign up
+            </Button>
           </View>
           <View style={styles.disclaimer}>
+            <Typography type="normal" color="#C4C4C4">
+              Already have an account?{" "}
+            </Typography>
             <Typography
-              text="Already have an account? "
-              type="normal"
-              color="#C4C4C4"
-            ></Typography>
-            <Typography
-              text="Log in."
               type="normal"
               bold={true}
-              onPress={() => navigation.navigate('Login')}
-            ></Typography>
+              onPress={() => navigation.navigate("Login")}
+            >
+              Log in.
+            </Typography>
           </View>
         </View>
       </ImageBackground>

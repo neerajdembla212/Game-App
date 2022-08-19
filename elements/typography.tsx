@@ -2,8 +2,7 @@ import React, { FC } from "react";
 import { Text, StyleSheet } from "react-native";
 
 interface TypographyProps {
-  type: "heading" | "subHeading" | "normal" | "title" | "small";
-  text: string;
+  type: "heading" | "subHeading" | "normal" | "title" | "small" | "medium";
   overrideStyle?: Object;
   bold?: boolean;
   color?: string;
@@ -12,7 +11,7 @@ interface TypographyProps {
 
 export const Typography: FC<TypographyProps> = ({
   type,
-  text,
+  children,
   overrideStyle = {},
   bold = false,
   color = "#FFFFFF",
@@ -51,6 +50,12 @@ export const Typography: FC<TypographyProps> = ({
           ...additionalStyles,
         };
       }
+      case "medium": {
+        return {
+          ...styles.medium,
+          ...additionalStyles,
+        };
+      }
       default:
         return {
           ...styles.normal,
@@ -60,7 +65,7 @@ export const Typography: FC<TypographyProps> = ({
   }
   return (
     <Text style={getStyle()} onPress={onPress}>
-      {text}
+      {children}
     </Text>
   );
 };
@@ -87,5 +92,9 @@ const styles = StyleSheet.create({
   small: {
     fontSize: 13,
     lineHeight: 17,
+  },
+  medium: {
+    fontSize: 20,
+    lineHeight: 25,
   },
 });

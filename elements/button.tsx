@@ -4,32 +4,30 @@ import { makeStyles, Button as RneButton, Icon } from "@rneui/themed";
 
 interface ButtonProps {
   onPress: (e: GestureResponderEvent) => void;
-  text: string;
-  type: "primary" | "secondary" | "outline" | "link" | "default";
+  type: "primary" | "secondary" | "link" | "default";
   overrideStyles?: any;
   fullWidth?: boolean;
-  icon?: any;
   borderRadius?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
   const {
     onPress,
-    text,
+    children,
     overrideStyles = {},
     fullWidth = false,
     borderRadius = true,
-    icon,
+    type,
   } = props;
   const styles = useStyles(props);
   return (
     <RneButton
       onPress={onPress}
-      buttonStyle={{ ...styles.button, ...overrideStyles }}
+      buttonStyle={[styles.button, overrideStyles]}
       titleStyle={styles.buttonText}
+      type={type === "link" ? "clear" : "solid"}
     >
-      {icon}
-      {text}
+      {children}
     </RneButton>
   );
 };
@@ -52,12 +50,9 @@ const useStyles = makeStyles((theme: any, props: ButtonProps) => {
         fontWeight: "500",
       };
       break;
-    case "outline":
+    case "link":
       buttonStyles = {
         backgroundColor: "transparent",
-        borderWidth: 1,
-        borderStyle: "solid",
-        borderColor: theme.colors.secondary,
       };
       buttonTextStyles = {
         color: theme.colors.secondary,

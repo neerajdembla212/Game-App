@@ -8,11 +8,11 @@ import {
 } from "react-native";
 import { makeStyles } from "@rneui/themed";
 
-import { TextInput } from "../components/text-input";
-import { Typography } from "../components/typography";
-import { Button } from "../components/button";
-import { CheckboxInput } from "../components/checkbox-input";
-import { SsoAuth } from "../components/sso-auth";
+import { TextInput } from "../elements/text-input";
+import { Typography } from "../elements/typography";
+import { Button } from "../elements/button";
+import { CheckboxInput } from "../elements/checkbox-input";
+import { SsoAuth } from "../elements/sso-auth";
 
 interface LoginProps {
   navigation: any;
@@ -42,17 +42,16 @@ export const LoginScreen: React.FC<LoginProps> = ({ navigation }) => {
         <View style={styles.inner}>
           <View>
             <Typography
-              text="Welcome back"
               bold={true}
               type="title"
               overrideStyle={{ marginBottom: 20 }}
-            />
+            >
+              Welcome back
+            </Typography>
             <View style={styles.formField}>
-              <Typography
-                text="Email address"
-                type="normal"
-                overrideStyle={{ marginBottom: 10 }}
-              />
+              <Typography type="normal" overrideStyle={{ marginBottom: 10 }}>
+                Email address
+              </Typography>
               <TextInput
                 value={email}
                 onChange={onChangeEmail}
@@ -61,11 +60,9 @@ export const LoginScreen: React.FC<LoginProps> = ({ navigation }) => {
               />
             </View>
             <View style={styles.formField}>
-              <Typography
-                text="Password"
-                type="normal"
-                overrideStyle={{ marginBottom: 10 }}
-              />
+              <Typography type="normal" overrideStyle={{ marginBottom: 10 }}>
+                Password
+              </Typography>
               <TextInput
                 value={password}
                 onChange={onChangePassword}
@@ -81,7 +78,6 @@ export const LoginScreen: React.FC<LoginProps> = ({ navigation }) => {
               />
             </View>
             <Button
-              text="Login"
               onPress={() => {
                 navigation.navigate("Home");
               }}
@@ -89,7 +85,9 @@ export const LoginScreen: React.FC<LoginProps> = ({ navigation }) => {
               overrideStyles={styles.button}
               fullWidth={true}
               borderRadius={true}
-            />
+            >
+              Login
+            </Button>
           </View>
           <SsoAuth
             style={{ marginBottom: 30, padding: 20, justifyContent: "center" }}

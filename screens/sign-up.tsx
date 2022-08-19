@@ -5,15 +5,14 @@ import {
   TouchableWithoutFeedback,
   Platform,
   Keyboard,
-  Image,
 } from "react-native";
 import { makeStyles } from "@rneui/themed";
 
-import { Typography } from "../components/typography";
-import { TextInput } from "../components/text-input";
-import { CheckboxInput } from "../components/checkbox-input";
-import { Button } from "../components/button";
-import { SsoAuth } from "../components/sso-auth";
+import { Typography } from "../elements/typography";
+import { TextInput } from "../elements/text-input";
+import { CheckboxInput } from "../elements/checkbox-input";
+import { Button } from "../elements/button";
+import { SsoAuth } from "../elements/sso-auth";
 
 interface SignupProps {
   navigation: any;
@@ -50,18 +49,17 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
         >
           <View style={styles.inner}>
             <Typography
-              text="Create account"
               bold={true}
               type="title"
               overrideStyle={{ marginBottom: 20 }}
-            />
+            >
+              Create account
+            </Typography>
 
             <View style={styles.formField}>
-              <Typography
-                text="Email address"
-                type="normal"
-                overrideStyle={{ marginBottom: 10 }}
-              />
+              <Typography type="normal" overrideStyle={{ marginBottom: 10 }}>
+                Email address
+              </Typography>
               <TextInput
                 value={email}
                 onChange={onChangeEmail}
@@ -70,11 +68,9 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
               />
             </View>
             <View style={styles.formField}>
-              <Typography
-                text="Mobile number"
-                type="normal"
-                overrideStyle={{ marginBottom: 10 }}
-              />
+              <Typography type="normal" overrideStyle={{ marginBottom: 10 }}>
+                Mobile number
+              </Typography>
               <TextInput
                 value={phone}
                 onChange={onChangePhone}
@@ -84,11 +80,9 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
             </View>
 
             <View style={styles.formField}>
-              <Typography
-                text="Password"
-                type="normal"
-                overrideStyle={{ marginBottom: 10 }}
-              />
+              <Typography type="normal" overrideStyle={{ marginBottom: 10 }}>
+                Password
+              </Typography>
               <TextInput
                 value={password}
                 onChange={onChangePassword}
@@ -105,7 +99,6 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
               />
             </View>
             <Button
-              text="Create account"
               onPress={() => {
                 navigation.navigate("Login");
               }}
@@ -113,7 +106,9 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
               overrideStyles={styles.button}
               fullWidth={true}
               borderRadius={true}
-            />
+            >
+              Create account
+            </Button>
           </View>
         </KeyboardAvoidingView>
         <SsoAuth
@@ -128,8 +123,6 @@ const useStyles = makeStyles((theme: any, props: SignupProps) => ({
   container: {
     flex: 1,
     backgroundColor: theme.colors.primary,
-    // justifyContent: "center",
-    // paddingTop: "10%",
   },
   inner: {
     padding: 20,

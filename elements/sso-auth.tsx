@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Image } from "react-native";
 import { makeStyles } from "@rneui/themed";
-import { Typography } from "../components/typography";
-import { Button } from "../components/button";
+import { Typography } from "./typography";
+import { Button } from "./button";
 
 interface SsoAuthProps {
   style: any;
@@ -14,41 +14,36 @@ export const SsoAuth: React.FC<SsoAuthProps> = (props) => {
     <View style={{ marginBottom: 30, padding: 20, justifyContent: "center" }}>
       <View style={styles.lineWithText}>
         <View style={styles.line}></View>
-        <Typography
-          text="Or sign up with"
-          type="small"
-          overrideStyle={styles.centerText}
-          bold={true}
-        />
+        <Typography type="small" overrideStyle={styles.centerText} bold={true}>
+          Or sign up with
+        </Typography>
         <View style={styles.line}></View>
       </View>
       <View style={styles.buttonsContainer}>
         <Button
-          text="Facebook"
           type="secondary"
           onPress={() => {}}
           borderRadius={true}
-          icon={
-            <Image
-              source={require("../assets/facebook.png")}
-              style={{ width: 25, height: 25, marginRight: 5 }}
-            />
-          }
           overrideStyles={styles.ssoButton}
-        ></Button>
+        >
+          <Image
+            source={require("../assets/facebook.png")}
+            style={{ width: 25, height: 25, marginRight: 5 }}
+          />
+          Facebook
+        </Button>
         <Button
-          text="Google"
           type="secondary"
           onPress={() => {}}
           borderRadius={true}
-          icon={
-            <Image
-              source={require("../assets/google.png")}
-              style={{ width: 25, height: 25, marginRight: 5 }}
-            />
-          }
           overrideStyles={styles.ssoButton}
-        ></Button>
+        >
+          <Image
+            source={require("../assets/google.png")}
+            style={{ width: 25, height: 25, marginRight: 5 }}
+          />
+          Google
+        </Button>
       </View>
     </View>
   );

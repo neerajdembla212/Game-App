@@ -18,7 +18,6 @@ export const CheckboxInput: React.FC<CheckboxProps> = (props) => {
   } = props;
   const styles = useStyles(props);
   function onCheckboxPress(event: GestureResponderEvent) {
-    console.log("checkbox pressed ");
     onChange();
   }
   return (
