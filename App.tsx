@@ -18,8 +18,8 @@ const theme = createTheme({
     secondary: "#F9DC30",
     grey0: "rgba(255, 255, 255, 0.8)",
     grey1: "#A2A7AD",
-    grey2: "#EBEEFB",
-    grey3: "#E5E5E5",
+    grey2: "grey",
+    grey3: "#F8F8F8",
     blue1: "#3554E8",
   },
   lightColors: {
@@ -27,8 +27,8 @@ const theme = createTheme({
     secondary: "#F9DC30",
     grey0: "rgba(255, 255, 255, 0.8)",
     grey1: "#A2A7AD",
-    grey2: "#EBEEFB",
-    grey3: "#E5E5E5",
+    grey2: "grey",
+    grey3: "#F8F8F8",
     blue1: "#3554E8",
   },
 });

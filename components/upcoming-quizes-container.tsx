@@ -20,7 +20,7 @@ export const UpcomingQuizesContainer = () => {
     ));
   }
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Typography
         type="normal"
         color="black"
@@ -30,7 +30,6 @@ export const UpcomingQuizesContainer = () => {
         Upcoming quiz shows
       </Typography>
       {getQuizCards()}
-      
     </View>
   );
 };

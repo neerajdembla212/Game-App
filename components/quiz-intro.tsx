@@ -15,19 +15,19 @@ export const QuizIntro: React.FC<QuizIntroProps> = (props) => {
     return null;
   }
   return (
-    <View style={[styles.container, styles.shadow]}>
-      <Image
-        source={quiz.quizImage}
-        resizeMode="cover"
-        style={{
-          width: "100%",
-          height: "65%",
-          maxHeight: 200,
-          borderTopRightRadius: 25,
-          borderTopLeftRadius: 25,
-        }}
-      />
-      <View style={{ height: 40 }}>
+    <>
+      <View style={[styles.container]}>
+        <Image
+          source={quiz.quizImage}
+          resizeMode="cover"
+          style={{
+            width: "100%",
+            height: 150,
+            maxHeight: 200,
+            borderTopRightRadius: 25,
+            borderTopLeftRadius: 25,
+          }}
+        />
         {quiz.isVotingRequired && (
           <Button onPress={() => {}} type="primary" fullWidth>
             Cast your vote now
@@ -43,29 +43,18 @@ export const QuizIntro: React.FC<QuizIntroProps> = (props) => {
         )}
       </View>
       <QuizIntroTime quiz={quiz} />
-    </View>
+    </>
   );
 };
 
 const useStyles = makeStyles((theme: any, props: QuizIntroProps) => ({
   container: {
-    height: "40%",
-    maxHeight: props.quiz.isVotingRequired ? 350 : 220,
-    borderRadius: 25,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
     width: "100%",
-    backgroundColor: theme.colors.white,
-    marginTop: 10,
-    marginBottom: 20,
+    backgroundColor: "#F8F8F8",
+    marginTop: 20,
     borderWidth: 1,
     borderColor: "transparent",
-    position: "relative",
-    justifyContent: "space-evenly",
-  },
-  shadow: {
-    shadowColor: theme.colors.grey3,
-    shadowOffset: { width: 7, height: 7 },
-    shadowOpacity: 0.4,
-    shadowRadius: 4,
-    elevation: 4,
   },
 }));

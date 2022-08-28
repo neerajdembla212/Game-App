@@ -12,7 +12,7 @@ interface QuizIntroTimeProps {
 export const QuizIntroTime: React.FC<QuizIntroTimeProps> = (props) => {
   const styles = useStyles(props);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, styles.shadow]}>
       <View style={styles.timeInformation}>
         <Typography type="medium" bold color="black">
           Today, 2pm
@@ -38,12 +38,24 @@ const useStyles = makeStyles((theme: any, props: QuizIntroTimeProps) => ({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 10,
-    height: "35%",
+    padding: 12,
+    height: 70,
     width: "100%",
+    backgroundColor: theme.colors.grey3,
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
+    alignContent: "stretch",
+    alignItems: "stretch",
   },
   timeInformation: {
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     flexDirection: "column",
+  },
+  shadow: {
+    shadowColor: "grey",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.35,
+    shadowRadius: 10,
+    elevation: 10,
   },
 }));

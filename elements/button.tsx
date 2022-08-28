@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme: any, props: ButtonProps) => {
       borderRadius: props.borderRadius ? 30 : 0,
       alignItems: "center",
       padding: 10,
+      margin: 0,
       ...buttonStyles,
     },
     buttonText: {
