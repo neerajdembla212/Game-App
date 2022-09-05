@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@rneui/themed";
-import { View, Image, ImageBackground } from "react-native";
+import { View, ImageBackground } from "react-native";
 
 import { FreeQuiz } from "../types/quiz";
 import { Typography } from "../elements/typography";
@@ -16,7 +16,7 @@ export const FreeQuizIntro: React.FC<FreeQuizIntroProps> = (props) => {
     return null;
   }
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, styles.shadow]}>
       <ImageBackground
         source={quiz.quizImage}
         style={styles.innerImage}
@@ -61,5 +61,12 @@ const useStyles = makeStyles((theme: any, props: FreeQuizIntroProps) => ({
     top: -11,
     right: -25,
     height: "140%",
+  },
+  shadow: {
+    shadowColor: theme.colors.shadowColor,
+    shadowOffset: { width: 0, height: 16 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
+    elevation: 10,
   },
 }));

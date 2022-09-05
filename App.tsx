@@ -22,6 +22,7 @@ const theme = createTheme({
     grey3: "#F8F8F8",
     blue1: "#3554E8",
     lightPurple: "#F3ECFF",
+    shadowColor: "#B3A8A8",
   },
   lightColors: {
     primary: "#5C1DC0",
@@ -32,6 +33,7 @@ const theme = createTheme({
     grey3: "#F8F8F8",
     blue1: "#3554E8",
     lightPurple: "#F3ECFF",
+    shadowColor: "#B3A8A8",
   },
 });
 export default function App() {

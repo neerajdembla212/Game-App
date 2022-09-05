@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme: any, props: QuizIntroTimeProps) => ({
     flexDirection: "column",
   },
   shadow: {
-    shadowColor: "grey",
+    shadowColor: theme.colors.grey2,
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.35,
     shadowRadius: 10,
