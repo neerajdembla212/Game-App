@@ -83,7 +83,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 20,
   },
-  subHeading: {},
+  subHeading: {
+    color: "#FFFFFF",
+    fontSize: 18,
+    lineHeight: 23,
+  },
   title: {
     fontWeight: "bold",
     fontSize: 36,

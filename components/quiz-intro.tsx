@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme: any, props: QuizIntroProps) => ({
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     width: "100%",
-    backgroundColor: "#F8F8F8",
+    backgroundColor: theme.colors.grey3,
     marginTop: 20,
     borderWidth: 1,
     borderColor: "transparent",

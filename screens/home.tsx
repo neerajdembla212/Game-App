@@ -1,8 +1,9 @@
 import React from "react";
 import { makeStyles, Divider } from "@rneui/themed";
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import { QuizHomeHeader } from "../components/quiz-home-header";
 import { UpcomingQuizesContainer } from "../components/upcoming-quizes-container";
+import { FreeQuizesContainer } from "../components/free-quizes-container";
 
 interface HomeProps {}
 
@@ -12,24 +13,26 @@ export const HomeScreen: React.FC<HomeProps> = (props) => {
     <>
       <QuizHomeHeader containerStyles={styles.header} />
       <Divider />
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <UpcomingQuizesContainer />
-      </View>
+        <FreeQuizesContainer />
+      </ScrollView>
     </>
   );
 };
 
 const useStyles = makeStyles((theme: any, props: HomeProps) => ({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.white,
-    padding: 20,
-  },
   header: {
     padding: 20,
     paddingTop: 50,
     paddingBottom: 10,
     justifyContent: "center",
     backgroundColor: theme.colors.white,
+  },
+  container: {
+    height: "100%",
+    flexGrow: 1,
+    flex: 1,
+    alignContent: "space-between",
   },
 }));

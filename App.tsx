@@ -9,7 +9,7 @@ import { SignupScreen } from "./screens/sign-up";
 import { LoginScreen } from "./screens/login";
 import { HomeScreen } from "./screens/home";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { ThemeProvider, createTheme, Colors } from "@rneui/themed";
+import { ThemeProvider, createTheme } from "@rneui/themed";
 
 const Stack = createNativeStackNavigator();
 const theme = createTheme({
@@ -21,6 +21,7 @@ const theme = createTheme({
     grey2: "grey",
     grey3: "#F8F8F8",
     blue1: "#3554E8",
+    lightPurple: "#F3ECFF",
   },
   lightColors: {
     primary: "#5C1DC0",
@@ -30,6 +31,7 @@ const theme = createTheme({
     grey2: "grey",
     grey3: "#F8F8F8",
     blue1: "#3554E8",
+    lightPurple: "#F3ECFF",
   },
 });
 export default function App() {

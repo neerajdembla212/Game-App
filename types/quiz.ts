@@ -7,3 +7,11 @@ export interface Quiz {
   isOngoing: boolean;
   isVotingRequired?: boolean;
 }
+export interface FreeQuiz {
+  id: string;
+  name: string;
+  quizImage: ImageSourcePropType;
+  totalQuizes: number;
+  completedQuizes: number;
+  backgroundColor: string
+}

@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@rneui/themed";
 import { View } from "react-native";
-
 import { Typography } from "../elements/typography";
-import { QuizIntro } from "../components/quiz-intro";
-import { MOCK_UPCOMING_QUIZES } from "../mocks/upcoming-quizes";
-import { Quiz } from "../types/quiz";
+import { MOCK_FREE_QUIZES } from "../mocks/free-quizes";
+import { FreeQuiz } from "../types/quiz";
+import { FreeQuizIntro } from "../components/free-quiz-intro";
 
-export const UpcomingQuizesContainer = () => {
-  const [upcomingQuizes, setUpcomingQuizes] = useState<Quiz[]>([]);
+export const FreeQuizesContainer = () => {
+  const [freeQuizes, setFreeQuizes] = useState<FreeQuiz[]>([]);
   const styles = useStyles();
+
   useEffect(() => {
-    setUpcomingQuizes(MOCK_UPCOMING_QUIZES);
+    setFreeQuizes(MOCK_FREE_QUIZES);
   }, []);
 
-  function getQuizCards() {
-    return upcomingQuizes.map((quiz) => (
-      <QuizIntro key={quiz.id} quiz={quiz} />
+  function getFreeQuizCards() {
+    return freeQuizes.map((quiz) => (
+      <FreeQuizIntro key={quiz.id} quiz={quiz} />
     ));
   }
+
   return (
     <View style={styles.container}>
       <Typography
@@ -27,9 +28,9 @@ export const UpcomingQuizesContainer = () => {
         bold
         overrideStyle={styles.heading}
       >
-        Upcoming quiz shows
+        Free quizzes
       </Typography>
-      {getQuizCards()}
+      {getFreeQuizCards()}
     </View>
   );
 };
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme: any) => ({
     lineHeight: 30,
   },
   container: {
-    backgroundColor: theme.colors.white,
+    backgroundColor: "#F3ECFF",
     padding: 20,
   },
 }));

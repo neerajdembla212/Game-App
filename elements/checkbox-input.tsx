@@ -1,7 +1,7 @@
 import React from "react";
 import { CheckBox } from "@rneui/themed";
 import { GestureResponderEvent } from "react-native";
-import { makeStyles } from "@rneui/themed";
+import { makeStyles, useTheme } from "@rneui/themed";
 
 interface CheckboxProps {
   value: boolean;
@@ -10,6 +10,7 @@ interface CheckboxProps {
   text: string;
 }
 export const CheckboxInput: React.FC<CheckboxProps> = (props) => {
+  const { theme } = useTheme();
   const {
     value = false,
     onChange = () => {},
@@ -27,7 +28,7 @@ export const CheckboxInput: React.FC<CheckboxProps> = (props) => {
       title={text}
       checked={value}
       onPress={onCheckboxPress}
-      checkedColor="white"
+      checkedColor={theme.colors.white}
     />
   );
 };

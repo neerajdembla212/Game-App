@@ -1,11 +1,10 @@
 import React from "react";
 import {
-  NativeSyntheticEvent,
   TextInput as TextInputReactNative,
-  TextInputChangeEventData,
   StyleSheet,
   KeyboardTypeOptions,
 } from "react-native";
+import { makeStyles } from "@rneui/themed";
 
 interface TextInputProps {
   value: string;
@@ -23,6 +22,8 @@ export const TextInput: React.FC<TextInputProps> = ({
   keyboardType = "default",
   hideText = false,
 }) => {
+  const styles = useStyles();
+
   const textInputStyles = {
     ...styles.input,
     ...overrideStyle,
@@ -40,12 +41,12 @@ export const TextInput: React.FC<TextInputProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((theme: any, props: TextInputProps) => ({
   input: {
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     borderRadius: 10,
     height: 44,
     padding: 10,
-    color: "#FFFFFF",
+    color: theme.colors.white,
   },
-});
+}));
