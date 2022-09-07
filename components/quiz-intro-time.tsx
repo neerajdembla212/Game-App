@@ -1,35 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Image } from "react-native";
 import { makeStyles } from "@rneui/themed";
+
 import { Button } from "../elements/button";
 import { Typography } from "../elements/typography";
 import { Quiz } from "../types/quiz";
 
 interface QuizIntroTimeProps {
   quiz: Quiz;
+  timeInWords: string;
+  durationInWords: string;
 }
+
+const TimeInformation: React.FC<QuizIntroTimeProps> = (props) => {
+  const { quiz, timeInWords, durationInWords } = props;
+
+  const styles = useStyles(props);
+
+  return (
+    <View style={styles.timeInformation}>
+      <Typography type="medium" bold color="black">
+        {timeInWords}
+      </Typography>
+      <Typography type="small" color="black">
+        {durationInWords}
+      </Typography>
+    </View>
+  );
+};
+
+const ShareButton: React.FC<{ style: any }> = ({ style }) => {
+  return (
+    <Button type="link" onPress={() => {}} overrideStyles={style}>
+      <Typography type="normal" color="black">
+        Share
+      </Typography>
+      <Image
+        source={require("../assets/share.png")}
+        style={{ marginLeft: 5 }}
+      />
+    </Button>
+  );
+};
 
 export const QuizIntroTime: React.FC<QuizIntroTimeProps> = (props) => {
   const styles = useStyles(props);
   return (
     <View style={[styles.container, styles.shadow]}>
-      <View style={styles.timeInformation}>
-        <Typography type="medium" bold color="black">
-          Today, 2pm
-        </Typography>
-        <Typography type="small" color="black">
-          01:02:36 left
-        </Typography>
-      </View>
-      <Button type="link" onPress={() => {}}>
-        <Typography type="normal" color="black">
-          Share
-        </Typography>
-        <Image
-          source={require("../assets/share.png")}
-          style={{ marginLeft: 5 }}
-        />
-      </Button>
+      <TimeInformation {...props} />
+      <ShareButton style={styles.shareButton} />
     </View>
   );
 };
@@ -49,7 +68,7 @@ const useStyles = makeStyles((theme: any, props: QuizIntroTimeProps) => ({
   },
   timeInformation: {
     justifyContent: "space-between",
-    flexDirection: "column",
+    width: "75%",
   },
   shadow: {
     shadowColor: theme.colors.grey2,
@@ -57,5 +76,8 @@ const useStyles = makeStyles((theme: any, props: QuizIntroTimeProps) => ({
     shadowOpacity: 0.35,
     shadowRadius: 10,
     elevation: 10,
+  },
+  shareButton: {
+    top: -9,
   },
 }));

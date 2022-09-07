@@ -64,7 +64,7 @@ export const Typography: FC<TypographyProps> = ({
     }
   }
   return (
-    <Text style={getStyle()} onPress={onPress}>
+    <Text style={getStyle()} onPress={onPress} suppressHighlighting>
       {children}
     </Text>
   );

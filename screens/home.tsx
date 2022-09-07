@@ -5,7 +5,9 @@ import { QuizHomeHeader } from "../components/quiz-home-header";
 import { UpcomingQuizesContainer } from "../components/upcoming-quizes-container";
 import { FreeQuizesContainer } from "../components/free-quizes-container";
 
-interface HomeProps {}
+interface HomeProps {
+  navigation: any;
+}
 
 export const HomeScreen: React.FC<HomeProps> = (props) => {
   const styles = useStyles(props);

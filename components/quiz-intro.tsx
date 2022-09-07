@@ -1,24 +1,85 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@rneui/themed";
-import { View, Image } from "react-native";
+import { View, Image, Pressable } from "react-native";
+import {
+  intervalToDuration,
+  formatDuration,
+  formatRelative,
+  differenceInMinutes,
+  differenceInSeconds,
+} from "date-fns";
+
 import { Button } from "../elements/button";
 import { Quiz } from "../types/quiz";
 import { QuizIntroTime } from "./quiz-intro-time";
+import { useNavigation } from "@react-navigation/native";
 
 interface QuizIntroProps {
   quiz: Quiz;
 }
+const GAME_START_BEFORE_MINUTES = 5;
+
 export const QuizIntro: React.FC<QuizIntroProps> = (props) => {
+  const [timeInWords, setTimeInWords] = useState("");
+  const [durationInWords, setDurationInWords] = useState("");
+  const [minutesRemaining, setMinutesRemaining] = useState(0);
+  const [secondsRemaining, setSecondsRemaining] = useState(0);
+  const [isRoomOpen, setIsRoomOpen] = useState(false);
+
+  useEffect(() => {
+    const now = new Date();
+    if (now.getTime() >= quiz.quizTime.getTime()) {
+      setTimeInWords("Game Started");
+      setDurationInWords("00:00:00 left");
+      setIsRoomOpen(true);
+      return;
+    }
+    const intervalTimer = setInterval(() => {
+      const newDuration = formatDuration(
+        intervalToDuration({
+          start: new Date(),
+          end: quiz.quizTime,
+        })
+      );
+      const newMinutesRemaining = differenceInMinutes(quiz.quizTime, now);
+      const newSecondsRemaining = differenceInSeconds(quiz.quizTime, now);
+      let newTime;
+      if (newMinutesRemaining > GAME_START_BEFORE_MINUTES - 1) {
+        newTime = formatRelative(quiz.quizTime, now);
+      } else {
+        newTime = "Room Open";
+        setIsRoomOpen(true);
+      }
+      setDurationInWords(newDuration + " left");
+      setTimeInWords(newTime);
+      setMinutesRemaining(newMinutesRemaining);
+      setSecondsRemaining(newSecondsRemaining);
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalTimer);
+    };
+  }, []);
+
   const styles = useStyles(props);
   const { quiz } = props;
+  const navigation = useNavigation();
+
+  function onPressQuiz() {
+    if (!isRoomOpen) {
+      return;
+    }
+    navigation.navigate("Quiz", quiz);
+  }
+
   if (!quiz) {
     return null;
   }
   return (
-    <>
+    <Pressable onPress={onPressQuiz}>
       <View style={[styles.container]}>
         <Image
-          source={quiz.quizImage}
+          source={quiz.quizIntroImage}
           resizeMode="cover"
           style={{
             width: "100%",
@@ -42,8 +103,12 @@ export const QuizIntro: React.FC<QuizIntroProps> = (props) => {
           </Button>
         )}
       </View>
-      <QuizIntroTime quiz={quiz} />
-    </>
+      <QuizIntroTime
+        quiz={quiz}
+        timeInWords={timeInWords}
+        durationInWords={durationInWords}
+      />
+    </Pressable>
   );
 };
 

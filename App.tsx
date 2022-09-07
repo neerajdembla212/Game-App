@@ -2,14 +2,15 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
+import { ThemeProvider, createTheme } from "@rneui/themed";
 
 import { StartScreen } from "./screens/start";
 import { SignupScreen } from "./screens/sign-up";
 import { LoginScreen } from "./screens/login";
 import { HomeScreen } from "./screens/home";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { ThemeProvider, createTheme } from "@rneui/themed";
+import { QuizScreen } from "./screens/quiz";
 
 const Stack = createNativeStackNavigator();
 const theme = createTheme({
@@ -57,6 +58,7 @@ export default function App() {
             <Stack.Screen name="Sign up" component={SignupScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Quiz" component={QuizScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </ThemeProvider>
