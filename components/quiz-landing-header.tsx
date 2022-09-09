@@ -4,7 +4,7 @@ import { makeStyles } from "@rneui/themed";
 
 import { Badge } from "../elements/badge";
 
-export const QuizHomeHeader: FC<{
+export const QuizLandingHeader: FC<{
   containerStyles?: any;
 }> = (props) => {
   const styles = useStyles(props);
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: any) => ({
     justifyContent: "space-between",
     paddingVertical: 0,
     paddingHorizontal: 0,
-    alignItems: "center"
+    alignItems: "center",
   },
   inner: {
     flexDirection: "row",

@@ -1,14 +1,15 @@
 import React from "react";
 import { View, ImageBackground, StyleSheet } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
 import { Typography } from "../elements/typography";
 import { Button } from "../elements/button";
+import { RootStackParams } from "../types/route-stack-params";
 
 const backgroundImage = require("../assets/bg_startPage.png");
 
-interface StartScreenProps {
-  navigation: any;
-}
-export const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
+type StartScreenProps = NativeStackScreenProps<RootStackParams, "Start">;
+export const StartScreen: React.FC<StartScreenProps> = (props) => {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -32,7 +33,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
             </Typography>
             <Button
               onPress={() => {
-                navigation.navigate("Sign up");
+                props.navigation.navigate("Sign up");
               }}
               type="primary"
               overrideStyles={styles.button}
@@ -49,7 +50,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
             <Typography
               type="normal"
               bold={true}
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => props.navigation.navigate("Login")}
             >
               Log in.
             </Typography>

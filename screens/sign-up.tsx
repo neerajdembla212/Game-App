@@ -7,22 +7,22 @@ import {
   Keyboard,
 } from "react-native";
 import { makeStyles } from "@rneui/themed";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Typography } from "../elements/typography";
 import { TextInput } from "../elements/text-input";
 import { CheckboxInput } from "../elements/checkbox-input";
 import { Button } from "../elements/button";
 import { SsoAuth } from "../elements/sso-auth";
+import { RootStackParams } from "../types/route-stack-params";
 
-interface SignupProps {
-  navigation: any;
-}
-export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
+type SignupProps = NativeStackScreenProps<RootStackParams, "Sign up">;
+export const SignupScreen: React.FC<SignupProps> = (props) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [termsAndCondition, setTermsAndCondition] = useState(false);
-  const styles = useStyles({ navigation });
+  const styles = useStyles(props);
   function onChangeEmail(text: string) {
     setEmail(text);
   }
@@ -100,7 +100,7 @@ export const SignupScreen: React.FC<SignupProps> = ({ navigation }) => {
             </View>
             <Button
               onPress={() => {
-                navigation.navigate("Login");
+                props.navigation.navigate("Login");
               }}
               type="primary"
               overrideStyles={styles.button}

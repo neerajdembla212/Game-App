@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { ImageBackground, View } from "react-native";
+import { ImageBackground } from "react-native";
 import { makeStyles } from "@rneui/themed";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { Typography } from "../elements/typography";
 import { QuizDetail } from "../types/quiz";
 import { getQuizDetail } from "../mocks/quiz-detail";
+import { QuizStartContainer } from "../components/quiz-start-container";
+import { RootStackParams } from "../types/route-stack-params";
 
-interface QuizProps {
-  route: any;
-}
+type QuizProps = NativeStackScreenProps<RootStackParams, "Quiz">;
+
 export const QuizScreen: React.FC<QuizProps> = (props) => {
   const [quizDetail, setQuizDetail] = useState<QuizDetail>({} as QuizDetail);
   useEffect(() => {
-    const quizIntro = props.route.params;
-    const quiz = getQuizDetail(quizIntro.id);
+    const quizId = props.route.params.quizId;
+    const quiz = getQuizDetail(quizId);
     setQuizDetail(quiz);
   }, []);
   const styles = useStyles(props);
@@ -23,21 +24,12 @@ export const QuizScreen: React.FC<QuizProps> = (props) => {
       style={styles.backgroundImage}
       resizeMode="cover"
     >
-      <View style={styles.container}>
-        <Typography type="normal">Quiz screen here</Typography>
-      </View>
+      <QuizStartContainer quiz={quizDetail} />
     </ImageBackground>
   );
 };
 
 const useStyles = makeStyles((theme: any, props: QuizProps) => ({
-  container: {
-    height: "100%",
-    flexGrow: 1,
-    flex: 1,
-    alignContent: "space-between",
-    paddingTop: 50,
-  },
   backgroundImage: {
     flex: 1,
   },

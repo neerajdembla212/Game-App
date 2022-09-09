@@ -5,16 +5,15 @@ import { makeStyles } from "@rneui/themed";
 import { Button } from "../elements/button";
 import { Typography } from "../elements/typography";
 import { Quiz } from "../types/quiz";
+import { useShowQuizTimeInfo } from "../hooks/use-show-quiz-time-remaining";
 
 interface QuizIntroTimeProps {
   quiz: Quiz;
-  timeInWords: string;
-  durationInWords: string;
 }
 
 const TimeInformation: React.FC<QuizIntroTimeProps> = (props) => {
-  const { quiz, timeInWords, durationInWords } = props;
-
+  const { quiz } = props;
+  const { timeInWords, durationInWords } = useShowQuizTimeInfo(quiz.quizTime);
   const styles = useStyles(props);
 
   return (
@@ -68,7 +67,7 @@ const useStyles = makeStyles((theme: any, props: QuizIntroTimeProps) => ({
   },
   timeInformation: {
     justifyContent: "space-between",
-    width: "75%",
+    width: "77%",
   },
   shadow: {
     shadowColor: theme.colors.grey2,
@@ -79,5 +78,6 @@ const useStyles = makeStyles((theme: any, props: QuizIntroTimeProps) => ({
   },
   shareButton: {
     top: -9,
+    right: 10
   },
 }));

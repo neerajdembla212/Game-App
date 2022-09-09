@@ -1,19 +1,20 @@
 import React from "react";
 import { makeStyles, Divider } from "@rneui/themed";
-import { View, ScrollView } from "react-native";
-import { QuizHomeHeader } from "../components/quiz-home-header";
+import { ScrollView } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+import { QuizLandingHeader } from "../components/quiz-landing-header";
 import { UpcomingQuizesContainer } from "../components/upcoming-quizes-container";
 import { FreeQuizesContainer } from "../components/free-quizes-container";
+import { RootStackParams } from "../types/route-stack-params";
 
-interface HomeProps {
-  navigation: any;
-}
+type HomeProps = NativeStackScreenProps<RootStackParams, "Home">;
 
 export const HomeScreen: React.FC<HomeProps> = (props) => {
   const styles = useStyles(props);
   return (
     <>
-      <QuizHomeHeader containerStyles={styles.header} />
+      <QuizLandingHeader containerStyles={styles.header} />
       <Divider />
       <ScrollView style={styles.container}>
         <UpcomingQuizesContainer />

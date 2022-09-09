@@ -11,8 +11,9 @@ import { SignupScreen } from "./screens/sign-up";
 import { LoginScreen } from "./screens/login";
 import { HomeScreen } from "./screens/home";
 import { QuizScreen } from "./screens/quiz";
+import { RootStackParams } from "./types/route-stack-params";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParams>();
 const theme = createTheme({
   darkColors: {
     primary: "#5C1DC0",

@@ -7,7 +7,7 @@ mockTomorrowQuizDate.setMinutes(0);
 mockTomorrowQuizDate.setSeconds(0);
 
 const mockTodayQuizDate = new Date();
-mockTodayQuizDate.setHours(14);
+mockTodayQuizDate.setHours(12);
 mockTodayQuizDate.setMinutes(12);
 mockTodayQuizDate.setSeconds(0);
 

@@ -7,21 +7,22 @@ import {
   Keyboard,
 } from "react-native";
 import { makeStyles } from "@rneui/themed";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { TextInput } from "../elements/text-input";
 import { Typography } from "../elements/typography";
 import { Button } from "../elements/button";
 import { CheckboxInput } from "../elements/checkbox-input";
 import { SsoAuth } from "../elements/sso-auth";
+import { RootStackParams } from "../types/route-stack-params";
 
-interface LoginProps {
-  navigation: any;
-}
-export const LoginScreen: React.FC<LoginProps> = ({ navigation }) => {
+type LoginProps = NativeStackScreenProps<RootStackParams, "Login">;
+
+export const LoginScreen: React.FC<LoginProps> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const styles = useStyles({ navigation });
+  const styles = useStyles(props);
 
   function onChangeEmail(text: string) {
     setEmail(text);
@@ -79,7 +80,7 @@ export const LoginScreen: React.FC<LoginProps> = ({ navigation }) => {
             </View>
             <Button
               onPress={() => {
-                navigation.navigate("Home");
+                props.navigation.navigate("Home");
               }}
               type="primary"
               overrideStyles={styles.button}

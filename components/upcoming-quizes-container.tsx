@@ -11,7 +11,9 @@ export const UpcomingQuizesContainer = () => {
   const [upcomingQuizes, setUpcomingQuizes] = useState<Quiz[]>([]);
   const styles = useStyles();
   useEffect(() => {
-    setUpcomingQuizes(MOCK_UPCOMING_QUIZES);
+    setTimeout(() => {
+      setUpcomingQuizes(MOCK_UPCOMING_QUIZES);
+    }, 3000);
   }, []);
 
   function getQuizCards() {
@@ -19,6 +21,7 @@ export const UpcomingQuizesContainer = () => {
       <QuizIntro key={quiz.id} quiz={quiz} />
     ));
   }
+
   return (
     <View style={styles.container}>
       <Typography
