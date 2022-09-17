@@ -1,39 +1,34 @@
 import React from "react";
 import { makeStyles } from "@rneui/themed";
 import { Typography } from "../elements/typography";
-import { useShowQuizTimeInfo } from "../hooks";
+import { View } from "react-native";
 
 interface QuizStartTimeRemainingProps {
-  quizTime: Date;
+  minutes: number;
+  seconds: number;
 }
 
 export const QuizStartTimeRemaining: React.FC<QuizStartTimeRemainingProps> = (
   props
 ) => {
-  if (!props.quizTime) {
-    return null;
-  }
-  const { minutesRemaining, secondsRemaining } = useShowQuizTimeInfo(
-    props.quizTime
-  );
+  const { minutes, seconds } = props;
   const styles = useStyles(props);
-
   return (
-    <Typography type="title" overrideStyle={styles.text}>
-      {minutesRemaining} : {secondsRemaining}
-    </Typography>
+    <View style={styles.container}>
+      <Typography type="large" overrideStyle={styles.text}>
+        Game Starting: {minutes < 10 ? "0" : ""}
+        {minutes} : {seconds < 10 ? "0" : ""}
+        {seconds}
+      </Typography>
+    </View>
   );
 };
 
 const useStyles = makeStyles(
   (theme: any, props: QuizStartTimeRemainingProps) => ({
     container: {
-      height: "100%",
-      flexGrow: 1,
-      flex: 1,
-      alignContent: "space-between",
-      paddingTop: 70,
-      paddingLeft: 20,
+      alignSelf: "center",
+      top: "50%",
     },
     text: {
       color: theme.colors.secondary,

@@ -25,7 +25,7 @@ export const QuizIntro: React.FC<QuizIntroProps> = (props) => {
     if (!isRoomOpen) {
       return;
     }
-    navigation.navigate("Quiz", { quizId: quiz.id });
+    navigation.replace("Quiz", { quizId: quiz.id });
   }
 
   if (!quiz) {

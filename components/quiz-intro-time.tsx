@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Image } from "react-native";
 import { makeStyles } from "@rneui/themed";
+import { formatDuration } from "date-fns";
 
 import { Button } from "../elements/button";
 import { Typography } from "../elements/typography";
@@ -12,17 +13,33 @@ interface QuizIntroTimeProps {
 }
 
 const TimeInformation: React.FC<QuizIntroTimeProps> = (props) => {
+  if (!props.quiz.quizTime) {
+    return null;
+  }
   const { quiz } = props;
-  const { timeInWords, durationInWords } = useShowQuizTimeInfo(quiz.quizTime);
+  const { timeInWords, duration } = useShowQuizTimeInfo(quiz.quizTime);
   const styles = useStyles(props);
-
+  function getDurationInWords() {
+    if (
+      !duration.years &&
+      !duration.months &&
+      !duration.weeks &&
+      !duration.days &&
+      !duration.hours &&
+      !duration.minutes &&
+      !duration.seconds
+    ) {
+      return "00:00:00 left";
+    }
+    return formatDuration(duration) + " left";
+  }
   return (
     <View style={styles.timeInformation}>
       <Typography type="medium" bold color="black">
         {timeInWords}
       </Typography>
       <Typography type="small" color="black">
-        {durationInWords}
+        {getDurationInWords()}
       </Typography>
     </View>
   );
@@ -67,7 +84,7 @@ const useStyles = makeStyles((theme: any, props: QuizIntroTimeProps) => ({
   },
   timeInformation: {
     justifyContent: "space-between",
-    width: "77%",
+    width: "81%",
   },
   shadow: {
     shadowColor: theme.colors.grey2,
@@ -78,6 +95,6 @@ const useStyles = makeStyles((theme: any, props: QuizIntroTimeProps) => ({
   },
   shareButton: {
     top: -9,
-    right: 10
+    right: 18,
   },
 }));

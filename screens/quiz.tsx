@@ -5,8 +5,9 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { QuizDetail } from "../types/quiz";
 import { getQuizDetail } from "../mocks/quiz-detail";
-import { QuizStartContainer } from "../components/quiz-start-container";
+import { QuizStartHeader } from "../components/quiz-start-header";
 import { RootStackParams } from "../types/route-stack-params";
+import { QuizLoadContainer } from "../components/quiz-load-container";
 
 type QuizProps = NativeStackScreenProps<RootStackParams, "Quiz">;
 
@@ -17,6 +18,7 @@ export const QuizScreen: React.FC<QuizProps> = (props) => {
     const quiz = getQuizDetail(quizId);
     setQuizDetail(quiz);
   }, []);
+
   const styles = useStyles(props);
   return (
     <ImageBackground
@@ -24,7 +26,13 @@ export const QuizScreen: React.FC<QuizProps> = (props) => {
       style={styles.backgroundImage}
       resizeMode="cover"
     >
-      <QuizStartContainer quiz={quizDetail} />
+      <QuizStartHeader
+        userCount={quizDetail.viewerCount}
+        onMuteUnmute={() => {}}
+        onQuitQuiz={() => {}}
+        style={styles.header}
+      />
+      <QuizLoadContainer quizTime={quizDetail.quizTime} />
     </ImageBackground>
   );
 };
@@ -32,5 +40,9 @@ export const QuizScreen: React.FC<QuizProps> = (props) => {
 const useStyles = makeStyles((theme: any, props: QuizProps) => ({
   backgroundImage: {
     flex: 1,
+  },
+  header: {
+    paddingTop: 50,
+    paddingLeft: 20,
   },
 }));

@@ -7,13 +7,14 @@ interface QuizStartHeaderProps {
   userCount: number;
   onMuteUnmute: (action: "mute" | "unmute") => void;
   onQuitQuiz: () => void;
+  style: Record<string, string | number>;
 }
 
 export const QuizStartHeader: React.FC<QuizStartHeaderProps> = (props) => {
   const styles = useStyles(props);
-  const { userCount } = props;
+  const { userCount, style } = props;
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.iconContainer}>
         <Image
           source={require("../assets/active_users.png")}

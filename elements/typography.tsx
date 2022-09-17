@@ -1,8 +1,17 @@
 import React, { FC } from "react";
 import { Text, StyleSheet } from "react-native";
 
+type typographyTypes =
+  | "heading"
+  | "subHeading"
+  | "normal"
+  | "title"
+  | "small"
+  | "medium"
+  | "large";
+
 interface TypographyProps {
-  type: "heading" | "subHeading" | "normal" | "title" | "small" | "medium";
+  type: typographyTypes;
   overrideStyle?: Object;
   bold?: boolean;
   color?: string;
@@ -19,9 +28,9 @@ export const Typography: FC<TypographyProps> = ({
 }) => {
   function getStyle() {
     const additionalStyles = {
-      ...overrideStyle,
       fontWeight: bold ? "bold" : "normal",
       color,
+      ...overrideStyle,
     };
     switch (type) {
       case "heading":
@@ -56,6 +65,12 @@ export const Typography: FC<TypographyProps> = ({
           ...additionalStyles,
         };
       }
+      case "large": {
+        return {
+          ...styles.large,
+          ...additionalStyles,
+        };
+      }
       default:
         return {
           ...styles.normal,
@@ -63,6 +78,7 @@ export const Typography: FC<TypographyProps> = ({
         };
     }
   }
+
   return (
     <Text style={getStyle()} onPress={onPress} suppressHighlighting>
       {children}
@@ -82,6 +98,11 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 16,
     lineHeight: 20,
+  },
+  large: {
+    color: "#FFFFFF",
+    fontSize: 24,
+    lineHeight: 30,
   },
   subHeading: {
     color: "#FFFFFF",

@@ -1,45 +1,64 @@
 import { useState, useEffect } from "react";
 import {
   intervalToDuration,
-  formatDuration,
   formatRelative,
   differenceInMinutes,
   differenceInSeconds,
+  Duration,
 } from "date-fns";
 
+const INIT_DURATION = {
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  months: 0,
+  seconds: 0,
+  years: 0,
+  weeks: 0,
+};
 export const useShowQuizTimeInfo = (quizTime: Date) => {
   const [timeInWords, setTimeInWords] = useState("");
-  const [durationInWords, setDurationInWords] = useState("");
+  const [duration, setDuration] = useState<Required<Duration>>(INIT_DURATION);
   const [minutesRemaining, setMinutesRemaining] = useState(0);
   const [secondsRemaining, setSecondsRemaining] = useState(0);
 
   const GAME_START_BEFORE_MINUTES = 5;
+  let intervalTimer: NodeJS.Timer;
   useEffect(() => {
-    const now = new Date();
-    if (now.getTime() >= quizTime.getTime()) {
+    let now = new Date();
+    now.setMilliseconds(0);
+    if (differenceInSeconds(quizTime, now) <= 0) {
       setTimeInWords("Game Started");
-      setDurationInWords("00:00:00 left");
+      setDuration(INIT_DURATION);
+      clearInterval(intervalTimer);
       return;
     }
 
-    const intervalTimer = setInterval(() => {
-      const newDuration = formatDuration(
-        intervalToDuration({
-          start: new Date(),
-          end: quizTime,
-        })
-      );
+    intervalTimer = setInterval(() => {
+      let now = new Date();
+      now.setMilliseconds(0);
       const newMinutesRemaining = differenceInMinutes(quizTime, now);
       const newSecondsRemaining = differenceInSeconds(quizTime, now);
+      if (newSecondsRemaining <= 0) {
+        setTimeInWords("Game Started");
+        setDuration(INIT_DURATION);
+        setMinutesRemaining(0);
+        setSecondsRemaining(0);
+        clearInterval(intervalTimer);
+        return;
+      }
+      const newDuration = intervalToDuration({
+        start: new Date(),
+        end: quizTime,
+      });
       let newTime;
       if (newMinutesRemaining > GAME_START_BEFORE_MINUTES - 1) {
         newTime = formatRelative(quizTime, now);
       } else {
         newTime = "Room Open";
       }
-      setDurationInWords(newDuration + " left");
+      setDuration(newDuration as typeof INIT_DURATION);
       setTimeInWords(newTime);
-      console.log("time : ", newMinutesRemaining, newSecondsRemaining);
       setMinutesRemaining(newMinutesRemaining);
       setSecondsRemaining(newSecondsRemaining);
     }, 1000);
@@ -52,7 +71,7 @@ export const useShowQuizTimeInfo = (quizTime: Date) => {
 
   return {
     timeInWords,
-    durationInWords,
+    duration,
     minutesRemaining,
     secondsRemaining,
   };
