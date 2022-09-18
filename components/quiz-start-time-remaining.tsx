@@ -28,7 +28,7 @@ const useStyles = makeStyles(
   (theme: any, props: QuizStartTimeRemainingProps) => ({
     container: {
       alignSelf: "center",
-      top: "50%",
+      margin: 10,
     },
     text: {
       color: theme.colors.secondary,

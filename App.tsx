@@ -25,6 +25,7 @@ const theme = createTheme({
     blue1: "#3554E8",
     lightPurple: "#F3ECFF",
     shadowColor: "#B3A8A8",
+    blurredPurple: "rgba(141, 97, 208, 0.6)",
   },
   lightColors: {
     primary: "#5C1DC0",
@@ -36,6 +37,7 @@ const theme = createTheme({
     blue1: "#3554E8",
     lightPurple: "#F3ECFF",
     shadowColor: "#B3A8A8",
+    blurredPurple: "rgba(141, 97, 208, 0.6)",
   },
 });
 export default function App() {

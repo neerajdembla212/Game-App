@@ -11,9 +11,10 @@ export const UpcomingQuizesContainer = () => {
   const [upcomingQuizes, setUpcomingQuizes] = useState<Quiz[]>([]);
   const styles = useStyles();
   useEffect(() => {
-    setTimeout(() => {
+    const intervalId = setTimeout(() => {
       setUpcomingQuizes(MOCK_UPCOMING_QUIZES);
     }, 3000);
+    return () => clearTimeout(intervalId);
   }, []);
 
   function getQuizCards() {

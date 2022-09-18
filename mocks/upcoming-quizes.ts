@@ -7,8 +7,8 @@ mockTomorrowQuizDate.setMinutes(0);
 mockTomorrowQuizDate.setSeconds(0);
 
 const mockTodayQuizDate = new Date();
-mockTodayQuizDate.setHours(14);
-mockTodayQuizDate.setMinutes(27);
+mockTodayQuizDate.setHours(12);
+mockTodayQuizDate.setMinutes(30);
 mockTodayQuizDate.setSeconds(0);
 
 export const MOCK_UPCOMING_QUIZES: Quiz[] = [

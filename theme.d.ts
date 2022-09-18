@@ -5,5 +5,6 @@ declare module "@rneui/themed" {
     blue1: string;
     lightPurple: string;
     shadowColor: string;
+    blurredPurple: string;
   }
 }
