@@ -18,6 +18,7 @@ const TimeInformation: React.FC<QuizIntroTimeProps> = (props) => {
   }
   const { quiz } = props;
   const { timeInWords, duration } = useShowQuizTimeInfo(quiz.quizTime);
+  console.log('duration for ', quiz.name, duration);
   const styles = useStyles(props);
   function getDurationInWords() {
     if (

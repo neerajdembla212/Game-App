@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ImageBackground } from "react-native";
+import { ImageBackground, Image } from "react-native";
 import { makeStyles } from "@rneui/themed";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
@@ -26,6 +26,10 @@ export const QuizScreen: React.FC<QuizProps> = (props) => {
       style={styles.backgroundImage}
       resizeMode="cover"
     >
+      <Image
+        source={require("../assets/themeTitle_PopCulture.png")}
+        style={styles.quizTitle}
+      />
       <QuizStartHeader
         userCount={quizDetail.viewerCount}
         onMuteUnmute={() => {}}
@@ -42,7 +46,12 @@ const useStyles = makeStyles((theme: any, props: QuizProps) => ({
     flex: 1,
   },
   header: {
-    paddingTop: 50,
-    paddingLeft: 20,
+    paddingTop: 0,
+    paddingLeft: "10%",
+    top: '-10%'
+  },
+  quizTitle: {
+    top: "20%",
+    left: "10%"
   },
 }));

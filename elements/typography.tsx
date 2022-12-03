@@ -8,7 +8,8 @@ type typographyTypes =
   | "title"
   | "small"
   | "medium"
-  | "large";
+  | "large"
+  | "extraLarge";
 
 interface TypographyProps {
   type: typographyTypes;
@@ -71,6 +72,12 @@ export const Typography: FC<TypographyProps> = ({
           ...additionalStyles,
         };
       }
+      case "extraLarge": {
+        return {
+          ...styles.extraLarge,
+          ...additionalStyles,
+        };
+      }
       default:
         return {
           ...styles.normal,
@@ -121,5 +128,9 @@ const styles = StyleSheet.create({
   medium: {
     fontSize: 20,
     lineHeight: 25,
+  },
+  extraLarge: {
+    fontSize: 120,
+    lineHeight: 120,
   },
 });
